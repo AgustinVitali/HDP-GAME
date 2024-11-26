@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego - HDP</title>
+    <link rel="stylesheet" href="/game.css">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/cartas.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>En Sala</h1>
+        <div id="player-count"></div>
+        <div id="game-controls">
+            <button id="ready-button" onclick="playerReady()">Estoy listo</button>
+            <button id="leave-room">Salir de la sala</button>
+        </div>
+        <div id="game-status">Esperando jugadores...</div>
+        <div id="round-info"></div>
+        <div id="black-card-container" class="black-card-container">
+            <div id="black-card" class="black-card"></div>
+        </div>
+        <div id="cards-container" class="cards-grid"></div>
+        <div id="submitted-cards-container" class="cards-grid"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/game.js"></script>
+</body>
+</html>

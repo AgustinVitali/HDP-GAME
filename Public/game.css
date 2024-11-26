@@ -1,0 +1,119 @@
+*{
+    font-family: Super;
+}
+
+body {
+    
+    background-color: #242424;
+    margin: 0;
+    padding: 0;
+}
+
+.game-container {
+    background-color: #3d3d3d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #66b0d286, 0 0 10px #66b0d286, 0 0 20px #66b0d286;
+    text-align: center;
+    margin: 50px auto;
+    max-width: 800px;
+    overflow: hidden; /* Previene que el contenido desborde fuera de su contenedor */
+    position: relative;
+    
+}
+
+#ready-button,
+#leave-room{
+    background-color: #66b0d286;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+
+#ready-button,
+#leave-room:hover {
+    background-color: #588ca486;
+}
+
+.status-message {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+#game-controls{
+    margin: 15px;
+}
+.black-card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 20px auto;
+  }
+
+.black-card {
+      width: 100px;
+      height: 150px;
+      background-color: black;
+      border: 2px solid #588ca486;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 15px;
+      text-align: center;
+      padding: 10px;
+}
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    width: 220px;
+    margin: 0 auto;
+    
+}
+
+#cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Espaciado entre las cartas */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    max-height: 300px; /* Altura máxima para evitar que empuje otros elementos */
+    margin-top: 20px;
+}
+
+#cards-container::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+}
+
+
+#submitted-card{
+    display: flex;
+    justify-items:stretch ; /* Centrar las cartas en el contenedor */
+    flex-wrap: wrap; /* Permitir que las cartas se envuelvan en varias filas */
+    margin-top: 20px;
+}
+
+
+@font-face {
+    font-family:Super ;
+    src: url(/Public/Tipografia/Super\ Morning.ttf) format('truetype');
+    font-weight: bold; 
+    font-style: normal;
+}
+

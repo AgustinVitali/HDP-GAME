@@ -1,0 +1,67 @@
+*{
+    font-family: Super;
+}
+
+body {
+    
+    background-color: #242424;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #3d3d3d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #66b0d286, 0 0 10px #66b0d286, 0 0 20px #66b0d286;
+    text-align: center;
+}
+
+
+
+h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.form-group {
+    margin: 15px;
+}
+
+input {
+    background-color: #3d3d3d;
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #66b0d286;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra del input */
+}
+
+input:focus {
+    border-color: #66b0d286; /* Cambiar solo el color del borde */
+    outline: none; /* Sin contorno */
+    background-color: #3d3d3d; /* Mantener el mismo color de fondo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra más intensa al enfocar */
+}
+
+#joinButton {
+    background-color: #66b0d286;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#joinButton:hover {
+    background-color: #588ca486;
+}
