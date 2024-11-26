@@ -1,13 +1,26 @@
+// server.js
+const path = require('path');
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server); // Crear instancia de Socket.IO vinculada al servidor HTTP
+const io = new Server(server);
 
-// Servir archivos estáticos desde la carpeta 'public'
-app.use(express.static('public'));
+// Serve static files first
+app.use(express.static(path.join(__dirname, 'public')));
+
+// CORS configuration
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://hdp-game-nu.vercel.app'],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 const players = new Map();
@@ -107,7 +120,8 @@ const whiteCards = ["Un Volquete lleno de cadáveres", "Un bebé de caca", "El o
     "Brownie con gusto a pasto","La Iglesia maradoniana","Una silla de ruedas","Un test de embarazo positivo","La flacidez","Un accidente en un parque de diversiones",
     "Matar al último panda","El porno gay","Las bicisendas","Mirar nenas en jumper","(Nombrá al jugador de tu izquierda)","La cumbia villera","Coger con cocaína en la punta de la verga",
     "Usar sandalias con medias","Un cabeza de termo","La muerte","Parir en el auto","Preguntarle si está por acabar","Auschwitz","Lágrimas de semen","Tu situación laboral",
-    "Una verga más ancha que larga","Orgasmos múltiples","La tiro de cola","El negro pijudo de WhatsApp","El carnaval carioca","El trabajo esclavo","Irse en seco"  ]; // Ejemplo de cartas blancas
+    "Una verga más ancha que larga","Orgasmos múltiples","La tiro de cola","El negro pijudo de WhatsApp","El carnaval carioca","El trabajo esclavo","Irse en seco" 
+     ]; // Ejemplo de cartas blancas
 
 io.on('connection', (socket) => {
     console.log('Nuevo jugador conectado:', socket.id);
@@ -310,8 +324,18 @@ function startRound() {
 }
 
 
-// Iniciar el servidor
-const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
 });
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
