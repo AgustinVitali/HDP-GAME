@@ -3,31 +3,41 @@ const path = require('path');
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const cors = require('cors');
 
+// Initialize Express app
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
 
-// Serve static files first
-app.use(express.static(path.join(__dirname, 'public')));
+// Initialize Socket.IO with CORS settings
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
 
-// CORS configuration
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://hdp-game-nu.vercel.app'],
-    methods: ['GET', 'POST'],
-    credentials: true
-}));
 
-app.get('*', (req, res) => {
+
+// Use middleware
+app.use(cors());
+
+app.use(express.static('public'));
+
+
+// Routes
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
 
 const players = new Map();
 const roomCode = '1234';
 let judgeIndex = 0;
 let currentJudgeId = null;
-
 
 const blackCards = ["No te puedo explcar el asco que me da ________.","Trágico accidente deja 35 heridos. La causa:________.","La causa de la Tercera Guerra Mundial va a ser ________.",
     "Mi viejo siempre decía:En la mesa no se habla de política ni de ________.","El tiburón más grande es el tiburón ballena. Pero el más raro es el tiburón ________.",
@@ -146,7 +156,6 @@ io.on('connection', (socket) => {
         }
     });
 
-
     socket.on('playerReady', ({ roomCode, name }) => {
         const player = players.get(socket.id);
         if (player) {
@@ -230,11 +239,6 @@ io.on('connection', (socket) => {
             console.error('No judge ID available');
         }
     });
-
-    
-    
-
-    
 
     socket.on('selectWinner', ({ card }) => {
         // Lógica para manejar la carta ganadora seleccionada por el juez
@@ -323,19 +327,9 @@ function startRound() {
     judgeIndex = (judgeIndex + 1) % activePlayers.length;
 }
 
-
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok' });
-});
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-
-const PORT = process.env.PORT || 4000;
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
+const port = process.env.PORT || 8080; 
+server.listen(port, () => {
+  console.log(`Servidor escuchando en el puerto ${port}`);
 });
 
 

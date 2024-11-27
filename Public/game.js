@@ -1,8 +1,8 @@
-const socket = io('http://localhost:4000', {
-    reconnection: true,
-    reconnectionAttempts: 5,
-    reconnectionDelay: 1000
-});
+// game.js
+const socket = io(window.location.hostname === 'localhost' 
+    ? 'http://localhost:8080' 
+    : 'https://hdp-game-production-9b0a.up.railway.app'
+);
 
 // Recuperar datos del jugador desde localStorage
 const name = localStorage.getItem('playerName');

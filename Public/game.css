@@ -1,6 +1,4 @@
-*{
-    font-family: Super;
-}
+
 
 body {
     
@@ -110,9 +108,3 @@ body {
 }
 
 
-@font-face {
-    font-family:Super ;
-    src: url(/Public/Tipografia/Super\ Morning.ttf) format('truetype');
-    font-weight: bold; 
-    font-style: normal;
-}

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Configurar conexión con el servidor Socket.IO
-    const socket = io('http://localhost:4000'); // Asegúrate de que el servidor está en el puerto correcto
+    const socket = io('https://hdp-game-production-9b0a.up.railway.app'); // Asegúrate de que el servidor está en el puerto correcto
 
     // Manejar el evento de "unirse a la sala"
     joinButton.addEventListener('click', () => {
@@ -44,10 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`Te has unido a la sala: ${roomCode}`);
     });
 
-    /* Manejar desconexión del servidor
-    socket.on('disconnect', () => {
-        console.log('Desconectado del servidor.');
-    });*/
 
     // Manejar errores desde el servidor
     socket.on('errorMessage', (message) => {
